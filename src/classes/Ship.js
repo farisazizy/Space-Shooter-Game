@@ -40,13 +40,13 @@ class Ship extends GameObject
     update()
     {
         if(this.context.keyW.isDown)
-            this.context.ship.body.y -= this.movementSpeed;
-        if(this.context.keyA.isDown)
-            this.context.ship.body.x -= this.movementSpeed;
-        if(this.context.keyS.isDown)
             this.context.ship.body.y += this.movementSpeed;
-        if(this.context.keyD.isDown)
+        if(this.context.keyA.isDown)
             this.context.ship.body.x += this.movementSpeed;
+        if(this.context.keyS.isDown)
+            this.context.ship.body.y -= this.movementSpeed;
+        if(this.context.keyD.isDown)
+            this.context.ship.body.x -= this.movementSpeed;
 
         // this.context.cameras.main.centerX = this.context.ship.body.x;
         // this.context.cameras.main.centerY = this.context.ship.body.y;
