@@ -27,7 +27,6 @@ class Ship extends GameObject
     create()
     {
         this.context.ship = this.context.physics.add.image(100, 100, 'shipSprite');
-        this.context.ship2 = this.context.physics.add.image(100, 100, 'shipSprite');
 
         this.context.keyW = this.context.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.context.keyA = this.context.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -40,13 +39,13 @@ class Ship extends GameObject
     update()
     {
         if(this.context.keyW.isDown)
-            this.context.ship.body.y += this.movementSpeed;
-        if(this.context.keyA.isDown)
-            this.context.ship.body.x += this.movementSpeed;
-        if(this.context.keyS.isDown)
             this.context.ship.body.y -= this.movementSpeed;
-        if(this.context.keyD.isDown)
+        if(this.context.keyA.isDown)
             this.context.ship.body.x -= this.movementSpeed;
+        if(this.context.keyS.isDown)
+            this.context.ship.body.y += this.movementSpeed;
+        if(this.context.keyD.isDown)
+            this.context.ship.body.x += this.movementSpeed;
 
         // this.context.cameras.main.centerX = this.context.ship.body.x;
         // this.context.cameras.main.centerY = this.context.ship.body.y;

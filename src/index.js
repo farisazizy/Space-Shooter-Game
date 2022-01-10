@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Ship from './classes/Ship';
+import Asteroid from './classes/Asteroid';
 
 class MyGame extends Phaser.Scene
 {
@@ -9,6 +10,12 @@ class MyGame extends Phaser.Scene
 
         this.gameObjects = {};
 
+        for(var i=0; i < 5; i++){
+            const initX = Math.random() * 1000
+            const initY = Math.random() * 1000
+            const asteroid = new Asteroid(this, initX, initY);
+            this.gameObjects[asteroid.uid] = asteroid;
+        }
         this.gameObjects.ship = new Ship(this);
     }
 
@@ -46,7 +53,6 @@ const game = new Phaser.Game({
     width: 1000,
     height: 800,
     scene: MyGame,
-    backgroundColor: '#ffffaa',  
     physics: {
         default: 'arcade',
         arcade: {
