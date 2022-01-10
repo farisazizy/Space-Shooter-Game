@@ -29,11 +29,9 @@ class Asteroid extends GameObject
         this.context['Asteroid' + this.uid].setScale(0.5);
     }
 
-    update()
+    update(time, delta)
     {
-        const angle = Phaser.Math.FloatBetween(-1, 1)
-        this.context['Asteroid' + this.uid].setRotation(angle * 0.5);
+        this.context['Asteroid' + this.uid].angle = this.context['Asteroid' + this.uid].angle + (0.01 * delta);}
     }
-}
 
 module.exports = Asteroid;

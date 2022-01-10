@@ -37,12 +37,12 @@ class MyGame extends Phaser.Scene
         })    
     }
 
-    update()
+    update(time, delta)
     {
         Object.values(this.gameObjects).forEach(gameObject =>
         {
             if(gameObject.update)
-                gameObject.update();
+                gameObject.update(time, delta);
         })
     }
 }
