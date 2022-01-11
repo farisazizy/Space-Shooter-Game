@@ -16,6 +16,7 @@ class MyGame extends Phaser.Scene
             const asteroid = new Asteroid(this, initX, initY);
             this.gameObjects[asteroid.uid] = asteroid;
         }
+        
         this.gameObjects.ship = new Ship(this);
     }
 
