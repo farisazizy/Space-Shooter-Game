@@ -1,9 +1,9 @@
-const GameObject = require('./GameObject');
-const ship = require('../assets/ship.png');
+const ship = require('../assets/ship/ship.png');
 const Phaser = require('phaser');
 
-class Ship extends GameObject
+class Ship extends Phaser.Physics.Arcade.Sprite
 {
+    
     constructor(context)
     {
         super(context);

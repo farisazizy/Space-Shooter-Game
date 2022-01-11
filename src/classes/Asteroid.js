@@ -1,5 +1,5 @@
 const GameObject = require('./GameObject');
-const image = require('../assets/meteor7.png');
+const image = require('../assets/asteroid/meteor7.png');
 const Phaser = require('phaser');
 
 class Asteroid extends GameObject
