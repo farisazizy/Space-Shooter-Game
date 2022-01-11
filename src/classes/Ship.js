@@ -1,7 +1,7 @@
 const ship = require('../assets/ship/ship.png');
 const Phaser = require('phaser');
 
-class Ship extends Phaser.Physics.Arcade.Sprite
+class Ship extends GameObject
 {
     
     constructor(context)
