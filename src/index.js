@@ -4,7 +4,7 @@ import Asteroid from './classes/Asteroid';
 
 class MyGame extends Phaser.Scene
 {
-    // etst test
+    // etst test test
     constructor ()
     {
         super();
