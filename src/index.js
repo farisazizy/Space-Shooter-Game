@@ -1,66 +1,26 @@
-import Phaser from 'phaser';
-import Ship from './classes/Ship';
-import Asteroid from './classes/Asteroid';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 
-class MyGame extends Phaser.Scene
-{
-    // etst test test
-    constructor ()
-    {
-        super();
+import 'phaser';
+import config from './Config/config';
+import SceneMain from './Scenes/SceneMain';
+import SceneMainMenu from './Scenes/SceneMainMenu';
+import SceneScores from './Scenes/SceneScores';
+import SecondStage from './Scenes/SecondStage';
+import ThirdStage from './Scenes/ThirdStage';
+import SceneIntro from './Scenes/SceneIntro';
 
-        this.gameObjects = {};
-
-        for(var i=0; i < 5; i++){
-            const initX = Math.random() * 1000
-            const initY = Math.random() * 1000
-            const asteroid = new Asteroid(this, initX, initY);
-            this.gameObjects[asteroid.uid] = asteroid;
-        }
-        
-        this.gameObjects.ship = new Ship(this);
-    }
-
-    preload ()
-    {
-        Object.values(this.gameObjects).forEach(gameObject =>
-        {
-            if(gameObject.preload)
-                gameObject.preload();
-        })
-    }
-      
-    create ()
-    {
-        Object.values(this.gameObjects).forEach(gameObject =>
-        {
-            if(gameObject.create)
-                gameObject.create();
-        })    
-    }
-
-    update(time, delta)
-    {
-        Object.values(this.gameObjects).forEach(gameObject =>
-        {
-            if(gameObject.update)
-                gameObject.update(time, delta);
-        })
-    }
+class Game extends Phaser.Game {
+  constructor() {
+    super(config);
+    this.scene.add('SceneIntro', SceneIntro);
+    this.scene.add('ThirdStage', ThirdStage);
+    this.scene.add('SecondStage', SecondStage);
+    this.scene.add('SceneScores', SceneScores);
+    this.scene.add('SceneMainMenu', SceneMainMenu);
+    this.scene.add('SceneMain', SceneMain);
+    this.scene.start('SceneMainMenu');
+  }
 }
 
-const game = new Phaser.Game({
-    type: Phaser.Physics,
-    parent: 'phaser-example',
-    width: 1000,
-    height: 800,
-    scene: MyGame,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: {
-                y: 0
-            }
-        }
-    }
-});
+window.game = new Game();
