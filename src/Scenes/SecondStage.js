@@ -6,11 +6,10 @@
 /* eslint-disable no-use-before-define */
 
 import 'phaser';
-import {
-  ChaserShip,
-  GunShip,
-  CarrierShip,
-} from '../entities';
+import { EnemiesCarrier } from '../EnemiesCarrier';
+import { EnemiesChaser } from '../EnemiesChaser';
+import { EnemiesShooter } from '../EnemiesShooter';
+import { EnemyLaser } from '../EnemiesShooter';
 
 import { Player } from '../Player';
 import { PlayerLaser } from '../Player';
@@ -132,21 +131,21 @@ export default class SecondStage extends Phaser.Scene {
         let enemy = null;
 
         if (Phaser.Math.Between(0, 10) >= 3) {
-          enemy = new GunShip(
+          enemy = new EnemiesShooter(
             this,
             Phaser.Math.Between(0, this.game.config.width),
             0,
           );
         } else if (Phaser.Math.Between(0, 10) >= 5) {
-          if (this.getEnemiesByType('ChaserShip').length < 5) {
-            enemy = new ChaserShip(
+          if (this.getEnemiesByType('EnemiesChaser').length < 5) {
+            enemy = new EnemiesChaser(
               this,
               Phaser.Math.Between(0, this.game.config.width),
               0,
             );
           }
         } else {
-          enemy = new CarrierShip(
+          enemy = new EnemiesCarrier(
             this,
             Phaser.Math.Between(0, this.game.config.width),
             0,
