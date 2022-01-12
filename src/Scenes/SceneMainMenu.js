@@ -23,7 +23,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
-    this.title2 = this.add.text(this.game.config.width * 0.5, 160, 'by Bagus & Faris Azizy', {
+    this.title2 = this.add.text(this.game.config.width * 0.5, 160, 'by Bagus Seno & Faris Azizy', {
       fontFamily: 'monospace',
       fontSize: 16,
       fontStyle: 'bold',
