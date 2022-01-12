@@ -25,11 +25,7 @@ export default class SceneScores extends Phaser.Scene {
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.D);
 
     const div = document.createElement('div');
-    div.innerHTML = `<input type='search' placeholder='Write your name' id='tag'
-    style="background: transparent;
-    color: white;
-    border: 2px solid;
-    padding: 0.5rem;"/>
+    div.innerHTML = `
     <button type='submit' id='button'
     style='background-color: transparent;
     border: 2px solid white;
@@ -39,12 +35,11 @@ export default class SceneScores extends Phaser.Scene {
     margin-left: 3.5rem;
     text-transform: uppercase;
     font-weight: bold;'>
-    Send Score</button>`;
+    Main Menu</button>`;
     this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.6, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const btn = document.getElementById('button');
-    const name = document.getElementById('tag');
-    btn.onclick = () => SubmitScore.send(tag.value, currentScore).then(this.scene.start('SceneMainMenu'));
+    btn.onclick = () => window.location.reload();;
 
     const currentScore = Storage.getCurrentScore();
     const lasthigh = Storage.getHighScore();
