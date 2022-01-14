@@ -69,18 +69,21 @@ export default class ThirdStage extends Phaser.Scene {
       frameRate: 20,
       repeat: -1,
     });
+
     this.anims.create({
       key: 'sprEnemy2',
       frames: this.anims.generateFrameNumbers('sprEnemy2'),
       frameRate: 20,
       repeat: -1,
     });
+
     this.anims.create({
       key: 'sprExplosion',
       frames: this.anims.generateFrameNumbers('sprExplosion'),
       frameRate: 20,
       repeat: 0,
     });
+    
     this.anims.create({
       key: 'sprPlayer',
       frames: this.anims.generateFrameNumbers('sprPlayer'),
