@@ -152,6 +152,7 @@ export default class SceneMain extends Phaser.Scene {
         let enemy = null;
       if (Phaser.Math.Between(0, 10) >= 3) {
         const randomNumber = Math.floor(Math.random() * 2);
+        const randomNumber2 = Math.floor(Math.random() * 2);
         const x = Phaser.Math.Between(0, this.game.config.width) * randomNumber == 0 ? -1 : 1;
         const y = Phaser.Math.Between(0, this.game.config.height) * randomNumber == 1 ? -1 : 1;
 
