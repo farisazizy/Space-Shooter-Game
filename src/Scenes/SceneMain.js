@@ -40,20 +40,23 @@ export default class SceneMain extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32,
     });
+
     this.load.spritesheet('sprEnemy0', 'assets/sprEnemy0.png', {
-      frameWidth: 16,
-      frameHeight: 16,
+      frameWidth: 32,
+      frameHeight: 34,
     });
+
     this.load.image('sprEnemy1', 'assets/sprEnemy1.png');
     this.load.spritesheet('sprEnemy2', 'assets/sprEnemy2.png', {
-      frameWidth: 16,
-      frameHeight: 16,
+      frameWidth: 32,
+      frameHeight: 35,
     });
+
     this.load.image('sprLaserEnemy0', 'assets/sprLaserEnemy0.png');
     this.load.image('sprLaserPlayer', 'assets/sprLaserPlayer.png');
     this.load.spritesheet('sprPlayer', 'assets/sprPlayer.png', {
-      frameWidth: 16,
-      frameHeight: 16,
+      frameWidth: 32,
+      frameHeight: 32,
     });
 
     this.load.audio('sndExplode0', 'assets/sndExplode0.wav');
@@ -96,18 +99,21 @@ export default class SceneMain extends Phaser.Scene {
       frameRate: 20,
       repeat: -1,
     });
+
     this.anims.create({
       key: 'sprEnemy2',
       frames: this.anims.generateFrameNumbers('sprEnemy2'),
       frameRate: 20,
       repeat: -1,
     });
+
     this.anims.create({
       key: 'sprExplosion',
       frames: this.anims.generateFrameNumbers('sprExplosion'),
       frameRate: 20,
       repeat: 0,
     });
+
     this.anims.create({
       key: 'sprPlayer',
       frames: this.anims.generateFrameNumbers('sprPlayer'),
@@ -165,6 +171,7 @@ export default class SceneMain extends Phaser.Scene {
           y,
           angle
         );
+        
       } else if (Phaser.Math.Between(0, 10) >= 5) {
         if (this.getEnemiesByType('EnemiesChaser').length < 5) {
           enemy = new EnemiesChaser(
