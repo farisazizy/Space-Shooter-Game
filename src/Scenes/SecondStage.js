@@ -1,10 +1,3 @@
-/* eslint-disable block-scoped-var */
-/* eslint-disable no-redeclare */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undef */
-/* eslint-disable no-use-before-define */
-
 import 'phaser';
 import { EnemiesCarrier } from '../EnemiesCarrier';
 import { EnemiesChaser } from '../EnemiesChaser';
