@@ -40,18 +40,15 @@ export default class SceneMain extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32,
     });
-
     this.load.spritesheet('sprEnemy0', 'assets/sprEnemy0.png', {
       frameWidth: 16,
       frameHeight: 16,
     });
-
     this.load.image('sprEnemy1', 'assets/sprEnemy1.png');
     this.load.spritesheet('sprEnemy2', 'assets/sprEnemy2.png', {
       frameWidth: 16,
       frameHeight: 16,
     });
-    
     this.load.image('sprLaserEnemy0', 'assets/sprLaserEnemy0.png');
     this.load.image('sprLaserPlayer', 'assets/sprLaserPlayer.png');
     this.load.spritesheet('sprPlayer', 'assets/sprPlayer.png', {
@@ -154,10 +151,11 @@ export default class SceneMain extends Phaser.Scene {
       callback() {
         let enemy = null;
       if (Phaser.Math.Between(0, 10) >= 3) {
-        const randomNumber = Math.floor(Math.random() * 2);
-        const randomNumber2 = Math.floor(Math.random() * 2);
-        const x = Phaser.Math.Between(0, this.game.config.width) * randomNumber == 0 ? -1 : 1;
-        const y = Phaser.Math.Between(0, this.game.config.height) * randomNumber == 1 ? -1 : 1;
+        const fixXOrY = Math.floor(Math.random() * 2);
+        const zeroOrMax = Math.floor(Math.random() * 2);
+
+        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? 0 : this.game.config.width) : Phaser.Math.Between(0, this.game.config.width);
+        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? 0 : this.game.config.height) : Phaser.Math.Between(0, this.game.config.height);
 
         const angle = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
 
