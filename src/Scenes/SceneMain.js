@@ -36,6 +36,9 @@ export default class SceneMain extends Phaser.Scene {
 
   preload() {
 
+    this.load.image('deepspace', 'assets/bg.png');
+    this.load.audio('jojo', 'assets/jojo_bizzare.mp3')
+
     this.load.spritesheet('sprExplosion', 'assets/sprExplosion.png', {
       frameWidth: 32,
       frameHeight: 32,
@@ -68,6 +71,8 @@ export default class SceneMain extends Phaser.Scene {
     Storage.currentScore(zero);
     Storage.setAmmo(ammunition);
 
+    this.sound.play('jojo');
+    this.bg = this.add.image(240, 320, 'deepspace');
 
     stageText = this.add.text(250, 16, 'First Stage', {
       fontSize: '32px',
@@ -124,14 +129,14 @@ export default class SceneMain extends Phaser.Scene {
     this.sfx = {
       explosions: [
         this.sound.add('sndExplode0', {
-          volume: 0.01,
+          volume: 0.1,
         }),
         this.sound.add('sndExplode1', {
-          volume: 0.01,
+          volume: 0.1,
         }),
       ],
       laser: this.sound.add('sndLaser', {
-        volume: 0.01,
+        volume: 0.1,
       }),
     };
 
@@ -171,7 +176,7 @@ export default class SceneMain extends Phaser.Scene {
           y,
           angle
         );
-        
+
       } else if (Phaser.Math.Between(0, 10) >= 5) {
         if (this.getEnemiesByType('EnemiesChaser').length < 5) {
           enemy = new EnemiesChaser(

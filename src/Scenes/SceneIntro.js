@@ -62,4 +62,8 @@ export default class SceneIntro extends Phaser.Scene {
     const btn = document.getElementById('button');
     btn.onclick = () => this.scene.start('SceneMain');
   }
+
+  update(){
+    this.sound.stopAll();
+  }
 }
