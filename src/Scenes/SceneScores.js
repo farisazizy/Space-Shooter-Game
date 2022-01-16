@@ -14,6 +14,9 @@ export default class SceneScores extends Phaser.Scene {
   }
 
   create() {
+
+    this.load.image('deepspace', 'assets/bg.png');
+
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.S);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.A);
@@ -41,7 +44,7 @@ export default class SceneScores extends Phaser.Scene {
 
     this.score = this.add.text(this.game.config.width * 0.5, 128, ' ', {
       fontFamily: 'monospace',
-      fontSize: 48,
+      fontSize: 24,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center',
@@ -52,7 +55,7 @@ export default class SceneScores extends Phaser.Scene {
 
     this.high = this.add.text(this.game.config.width * 0.15, this.game.config.height * 0.4, ' ', {
       fontFamily: 'monospace',
-      fontSize: 48,
+      fontSize: 24,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center',
@@ -61,11 +64,13 @@ export default class SceneScores extends Phaser.Scene {
   }
 
   update() {
+    this.sound.stopAll();
+
     const leftAmmo = Storage.currentAmmo();
     if (leftAmmo <= zero) {
       this.title = this.add.text(this.game.config.width * 0.5, 128, 'NO AMMO LEFT', {
-        fontFamily: 'monospace',
-        fontSize: 48,
+        fontFamily: 'ethnocentric',
+        fontSize: 32,
         fontStyle: 'bold',
         color: '#ffffff',
         align: 'center',
@@ -73,13 +78,14 @@ export default class SceneScores extends Phaser.Scene {
       this.title.setOrigin(0.5);
     } else {
       this.title = this.add.text(this.game.config.width * 0.5, 128, 'GAME OVER', {
-        fontFamily: 'monospace',
-        fontSize: 48,
+        fontFamily: 'ethnocentric',
+        fontSize: 32,
         fontStyle: 'bold',
         color: '#ffffff',
         align: 'center',
       });
       this.title.setOrigin(0.5);
     }
+
   }
 }
