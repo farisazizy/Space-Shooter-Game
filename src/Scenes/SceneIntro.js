@@ -20,31 +20,31 @@ export default class SceneIntro extends Phaser.Scene {
     font-weight: bold;
     margin: 15px 0 0px 0;"
     />
-    Greetings Commander,
+    Semangat Pagi!, Komandan Unit 331.
     <br/>
-    As a member of the Distant Worlds Expedition Unit (DWEU), you have the responsibility to protect and secure the expeditionary fleet from any pirate, mercenary, or enemy of the federation.
-    <br/>
-    <br/>
-    The mission will take place in the Oevasy SG-Y d0 system at a distance of 65,647.34 LYs from the solar system.
+    Unit 331, Kami telah mendapatkan sinyal penyelamatan. Kami membutuhkan waktu untuk melakukan evakuasi. Bertahanlah hingga unit penyelamat sampai pada kalian.
     <br/>
     <br/>
-    These create an impossible situation to support your mission with ammunition supplies or reinforcements.
+    Unit penyelamatan tersebut akan berjalan dari sistem Oevasy SG-Y d0 pada jarak 65.647,34 LYs dari tata surya. 
     <br/>
     <br/>
-    You have to be thoughtful when choosing your targets, and once you decided an objective, shoot with your laser cannons.
+    Bertahanlah dengan persediaan amunisi yang tersedia.
     <br/>
     <br/>
-    Remember Commander that your ship will be flying at supercruise speed, so there's no reason to eliminate all the targets in space, you still keep the control of your spaceship to pitch and yaw during supercruise.
+    Anda harus bijaksana ketika akan menembak target Anda, dan setelah Anda memutuskan, tembak dengan meriam laser Anda. 
     <br/>
     <br/>
-    I wish you good luck on your mission, and god bless the federation with your success.
+    Ingat Komandan bahwa kapal Anda akan terbang dengan kecepatan supercruise, jadi tidak ada alasan untuk melenyapkan semua target di luar angkasa, Anda tetap mengendalikan pesawat ruang angkasa Anda untuk melakukan pitch dan yaw selama supercruise. 
+    <br/>
+    <br/>
+    Saya berharap Anda selamat, dan Tuhan memberkati Unit dengan kesuksesan Anda. 
     <br/>
     John Cruze,
     <br/>
-    Rear Admiral Of The Federation
+    Jendral Agung Federasi
     <br/>
     <br/>
-    Pitch/Yaw: [W] [S] [A] [D] - Laser: [SPACEBAR]
+    Pitch/Yaw: [W] [S] [A] [D] - Angle: Mouse - Laser: Left click Mouse
     </p>
 
     <button type='submit' id='button'
