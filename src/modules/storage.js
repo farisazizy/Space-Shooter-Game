@@ -17,7 +17,6 @@ const Storage = (() => {
     return getHigh;
   }
 
-
   function setAmmo(ammo) {
     localStorage.setItem('Ammunition', JSON.stringify(ammo));
   }
@@ -26,6 +25,7 @@ const Storage = (() => {
     const ammo = JSON.parse(localStorage.getItem('Ammunition'));
     return ammo;
   }
+
   return {
     currentScore,
     getCurrentScore,
@@ -35,6 +35,5 @@ const Storage = (() => {
     currentAmmo,
   };
 })();
-
 
 module.exports = Storage;
