@@ -144,28 +144,34 @@ export default class SceneMain extends Phaser.Scene {
 
     this.enemies = this.add.group();
     this.enemyLasers = this.add.group();
-    this.playerLasers = this.add.group();
-
+    this.playerLasers = this.add.group();    
+      
     this.time.addEvent({
       delay: 1000,
       callback() {
         let enemy = null;
+      if (Phaser.Math.Between(0, 10) >= 3) {
+        const randomNumber = Math.floor(Math.random() * 2);
+        const x = Phaser.Math.Between(0, this.game.config.width) * randomNumber == 0 ? -1 : 1;
+        const y = Phaser.Math.Between(0, this.game.config.height) * randomNumber == 1 ? -1 : 1;
 
-        if (Phaser.Math.Between(0, 10) >= 3) {
-          enemy = new EnemiesShooter(
+        const angle = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
+
+        enemy = new EnemiesShooter(
+          this, 
+          x,
+          y,
+          angle
+        );
+      } else if (Phaser.Math.Between(0, 10) >= 5) {
+        if (this.getEnemiesByType('EnemiesChaser').length < 5) {
+          enemy = new EnemiesChaser(
             this,
             Phaser.Math.Between(0, this.game.config.width),
             0,
           );
-        } else if (Phaser.Math.Between(0, 10) >= 5) {
-          if (this.getEnemiesByType('EnemiesChaser').length < 5) {
-            enemy = new EnemiesChaser(
-              this,
-              Phaser.Math.Between(0, this.game.config.width),
-              0,
-            );
-          }
-        } else {
+        }
+      } else {
           enemy = new EnemiesChaser(
             this,
             Phaser.Math.Between(0, this.game.config.width),
@@ -274,7 +280,7 @@ export default class SceneMain extends Phaser.Scene {
         this.player.moveRight();
       }
 
-      if (this.keySpace.isDown) {
+      if (this.input.mousePointer.isDown) {
         this.player.setData('isShooting', true);
       } else {
         this.player.setData('timerShootTick', this.player.getData('timerShootDelay') - 1);
@@ -311,7 +317,7 @@ export default class SceneMain extends Phaser.Scene {
           laser.destroy();
         }
       }
-    }
+    } 
 
     for (let i = 0; i < this.playerLasers.getChildren().length; i++) {
       const laser = this.playerLasers.getChildren()[i];

@@ -1,11 +1,16 @@
 import { Entity } from "./entities";
 
 export class EnemiesShooter extends Entity {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, radian) {
       super(scene, x, y, 'sprEnemy0', 'GunShip');
       this.play('sprEnemy0');
-  
-      this.body.velocity.y = Phaser.Math.Between(50, 100);
+
+      this.setRotation(radian + (2 * Math.PI * -90) / 360);
+
+      const vec = this.scene.physics.velocityFromRotation(radian + (2 * Math.PI * 180) / 360, -200);
+      
+      this.body.velocity.x = vec.x;
+      this.body.velocity.y = vec.y;
   
       this.shootTimer = this.scene.time.addEvent({
         delay: 1000,
