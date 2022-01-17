@@ -34,7 +34,7 @@ export default class ThirdStage extends Phaser.Scene {
   }
 
   preload() {
-    
+    this.load.image('deepspace', 'assets/bg.png');
   }
 
   create() {

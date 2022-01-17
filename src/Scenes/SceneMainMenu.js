@@ -8,13 +8,21 @@ export default class SceneMainMenu extends Phaser.Scene {
   }
 
   preload() {
-    
+    this.load.image('deepspace', 'assets/bg.png');
+    this.load.audio('interstellar', 'assets/hanszimmer.mp3')
   }
 
   create() {
+
+    this.sound.play('interstellar', {
+      loop: true
+    });
+
+    this.bg = this.add.image(240, 320, 'deepspace');
+
     this.title = this.add.text(this.game.config.width * 0.5, 128, 'SPACE SHOOTER', {
-      fontFamily: 'monospace',
-      fontSize: 48,
+      fontFamily: 'ethnocentric',
+      fontSize: 32,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center',
@@ -43,6 +51,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     Start Game</button>`;
     this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.4, play, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
+    /*
     const top = document.createElement('div');
     top.innerHTML = `<button type='submit' id='topscores'
     style='background-color: transparent;
@@ -55,6 +64,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     font-weight: bold;'>
     Top Scores</button>`;
     this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.55, top, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    */
 
     //const topBtn = document.getElementById('topscores');
     const playBtn = document.getElementById('play');
