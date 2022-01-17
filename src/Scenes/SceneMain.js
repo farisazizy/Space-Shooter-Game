@@ -24,7 +24,7 @@ let ammoText;
 const zero = 0;
 let sec = 0;
 const ammunition = 100;
-const maxAsteroids = 10;
+const maxAsteroids = 5;
 
 const highestScore = Storage.getHighScore();
 
@@ -82,11 +82,6 @@ export default class SceneMain extends Phaser.Scene {
 
     this.sound.play('jojo');
     this.bg = this.add.image(240, 320, 'deepspace');
-
-    stageText = this.add.text(250, 16, 'First Stage', {
-      fontSize: '32px',
-      fill: '#fff',
-    });
 
     highText = this.add.text(16, 60, ' ', {
       fontSize: '16px',
@@ -220,15 +215,15 @@ export default class SceneMain extends Phaser.Scene {
     });
 
     this.time.addEvent({
-      delay: 1000,
+      delay: 750,
       callback() {
         let enemy = null;
       if (Phaser.Math.Between(0, 10) >= 3) {
         const fixXOrY = Math.floor(Math.random() * 2);
         const zeroOrMax = Math.floor(Math.random() * 2);
 
-        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? -100 : this.game.config.width + 100) : Phaser.Math.Between(0, this.game.config.width);
-        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? -100 : this.game.config.height + 100) : Phaser.Math.Between(0, this.game.config.height);
+        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? 0 : this.game.config.width + 100) : Phaser.Math.Between(0, this.game.config.width);
+        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? 0 : this.game.config.height + 100) : Phaser.Math.Between(0, this.game.config.height);
 
         const angle = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
 
