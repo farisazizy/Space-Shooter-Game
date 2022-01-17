@@ -1,6 +1,8 @@
 import 'phaser';
 
 import { Player } from '../Player';
+import { Asteroid1 } from '../Asteroid1';
+import { Asteroid2 } from '../Asteroid2';
 import { PlayerLaser } from '../Player';
 
 import { EnemiesCarrier } from '../EnemiesCarrier';
@@ -14,12 +16,15 @@ let timer;
 let score = 0;
 let scoreText;
 let highText;
+let uraniumText;
+let chondriteText;
 let timerText;
 let stageText;
 let ammoText;
 const zero = 0;
 let sec = 0;
 const ammunition = 100;
+const maxAsteroids = 10;
 
 const highestScore = Storage.getHighScore();
 
@@ -36,6 +41,10 @@ export default class SceneMain extends Phaser.Scene {
 
   preload() {
 
+    this.load.image('asteroid', 'assets/asteroid.png');
+    this.load.image('asteroid2', 'assets/asteroid2.png');
+    this.load.image('material2', 'assets/material2.png');
+    this.load.image('material1', 'assets/material1.png');
     this.load.spritesheet('sprExplosion', 'assets/sprExplosion.png', {
       frameWidth: 32,
       frameHeight: 32,
@@ -65,30 +74,39 @@ export default class SceneMain extends Phaser.Scene {
     Storage.currentScore(zero);
     Storage.setAmmo(ammunition);
 
-
-    stageText = this.add.text(250, 16, 'First Stage', {
-      fontSize: '32px',
-      fill: '#fff',
-    });
-
     highText = this.add.text(16, 60, ' ', {
       fontSize: '16px',
-      fill: '#fff',
+      fill: '#fff',      
     });
+    highText.setScrollFactor(0);
+
     scoreText = this.add.text(16, 16, ' ', {
       fontSize: '32px',
       fill: '#fff',
     });
+    scoreText.setScrollFactor(0);
 
-    timerText = this.add.text(350, 60, ' ', {
+    uraniumText = this.add.text(16, 16, 'Uranium: ', {
       fontSize: '16px',
-      fill: '#fff',
-    });
+      fill: '#fff'
+    })
+    uraniumText.setOrigin(0, -35);
 
-    ammoText = this.add.text(330, 90, ' ', {
+    chondriteText = this.add.text(16, 0, 'Chondrite: ', {
       fontSize: '16px',
-      fill: '#fff',
-    });
+      fill: '#fff'
+    })
+    chondriteText.setOrigin(0, -35);
+
+    // timerText = this.add.text(350, 60, ' ', {
+    //   fontSize: '16px',
+    //   fill: '#fff',
+    // });
+
+    // ammoText = this.add.text(330, 90, ' ', {
+    //   fontSize: '16px',
+    //   fill: '#fff',
+    // });
 
     this.anims.create({
       key: 'sprEnemy0',
@@ -136,16 +154,54 @@ export default class SceneMain extends Phaser.Scene {
       'sprPlayer',
     );
 
+    // this.cameras.main.startFollow(this.player);
+
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+    this.dropItems = this.add.group();
     this.enemies = this.add.group();
+    this.asteroids = this.add.group();
     this.enemyLasers = this.add.group();
     this.playerLasers = this.add.group();    
-      
+ 
+    for(let i = 0; i < 10; i++)
+    {
+      this.asteroids.add(new Asteroid1(this, Phaser.Math.Between(0, this.game.config.width), Phaser.Math.Between(0, this.game.config.height)));
+    } 
+
+    function spawnAsteroids()
+    {
+      console.log('aster');
+      console.log(this.asteroids.getChildren().length);
+
+      for(let i = 0; i < maxAsteroids - this.asteroids.getChildren().length; i++)
+      {
+        const fixXOrY = Math.floor(Math.random() * 2);
+        const zeroOrMax = Math.floor(Math.random() * 2);
+
+        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? -300 : this.game.config.width + 300) : Phaser.Math.Between(0, this.game.config.width);
+        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? -300 : this.game.config.height + 300) : Phaser.Math.Between(0, this.game.config.height);      
+        
+        // random asteroid
+        const randomAsteroid = Math.floor(Math.random() * 2);
+
+        if(randomAsteroid == 0)
+          this.asteroids.add(new Asteroid1(this, Phaser.Math.Between(0, this.game.config.width), Phaser.Math.Between(0, this.game.config.height)));
+        else
+          this.asteroids.add(new Asteroid2(this, Phaser.Math.Between(0, this.game.config.width), Phaser.Math.Between(0, this.game.config.height)));
+      }  
+    }
+
+    this.time.addEvent({
+      delay: 5000,
+      callback: spawnAsteroids.bind(this),
+      loop: true
+    });
+
     this.time.addEvent({
       delay: 1000,
       callback() {
@@ -154,8 +210,8 @@ export default class SceneMain extends Phaser.Scene {
         const fixXOrY = Math.floor(Math.random() * 2);
         const zeroOrMax = Math.floor(Math.random() * 2);
 
-        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? 0 : this.game.config.width) : Phaser.Math.Between(0, this.game.config.width);
-        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? 0 : this.game.config.height) : Phaser.Math.Between(0, this.game.config.height);
+        const x = fixXOrY == 0 ? (zeroOrMax == 0 ? -100 : this.game.config.width + 100) : Phaser.Math.Between(0, this.game.config.width);
+        const y = fixXOrY == 1 ? (zeroOrMax == 0 ? -100 : this.game.config.height + 100) : Phaser.Math.Between(0, this.game.config.height);
 
         const angle = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
 
@@ -211,7 +267,7 @@ export default class SceneMain extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
-        stopTimer();
+        // stopTimer();
       }
     });
 
@@ -221,27 +277,42 @@ export default class SceneMain extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
-        stopTimer();
+        // stopTimer();
       }
     });
+
+    this.physics.add.overlap(this.playerLasers, this.asteroids, (playerLaser, asteroid) =>
+    {
+      asteroid.explode(true);
+      this.asteroids.remove(asteroid);
+      console.log(this.asteroids.getChildren().length);
+    })
+
+    this.physics.add.collider(this.dropItems, this.player, (dropItem, player) =>
+    {
+      console.log('COLLIDE ON MAIN');
+      dropItem.onCollideWithPlayer();
+      dropItem.destroy();
+      this.dropItems.remove(dropItem);
+    })
 
     const nextScene = () => this.scene.start('SceneScores');
     const secondStage = () => this.scene.start('SecondStage');
 
     sec = 60;
     // Add timer
-    timer = setInterval(() => {
-      timerText.setText(`Time Left: ${sec}`);
-      sec--;
-      if (sec < 0) {
-        secondStage();
-        stopTimer();
-      }
-    }, 1000);
+    // timer = setInterval(() => {
+    //   timerText.setText(`Time Left: ${sec}`);
+    //   sec--;
+    //   if (sec < 0) {
+    //     secondStage();
+    //     stopTimer();
+    //   }
+    // }, 1000);
 
-    function stopTimer() {
-      clearInterval(timer);
-    }
+    // function stopTimer() {
+    //   clearInterval(timer);
+    // }
   }
 
   getEnemiesByType(type) {
@@ -262,11 +333,13 @@ export default class SceneMain extends Phaser.Scene {
 
     highText.setText(`Highest: ${lasthigh}`);
     scoreText.setText(`Score: ${score}`);
-    ammoText.setText(`Ammunition: ${currentAmmo}`);
+    uraniumText.setText(`Uranium: ${this.player.getData('uraniumCount')}`)
+    chondriteText.setText(`Chondrite: ${this.player.getData('chondriteCount')}`)
+    // ammoText.setText(`Ammunition: ${currentAmmo}`);
 
     if (currentAmmo < zero) {
       this.player.onDestroy();
-      clearInterval(timer);
+      // clearInterval(timer);
     }
 
     if (!this.player.getData('isDead')) {

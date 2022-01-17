@@ -30,8 +30,15 @@ export class Entity extends Phaser.GameObjects.Sprite {
           this.setVisible(false);
         }
       }, this);
+
+      this.onDestroy();
       this.setData('isDead', true);
     }
+  }
+
+  onDestroy()
+  {
+
   }
 }
 
@@ -68,5 +75,5 @@ export class ScrollingBackground {
         layer.y = (-layer.displayHeight) + (layer.displayHeight * i);
       }
     }
-  }
+  }  
 }
