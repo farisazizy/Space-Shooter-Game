@@ -166,8 +166,6 @@ export default class SceneMain extends Phaser.Scene {
       'sprPlayer',
     );
 
-    // this.cameras.main.startFollow(this.player);
-
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
